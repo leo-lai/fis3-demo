@@ -1,0 +1,87 @@
+浅谈Fis3自动化构建之模块化开发
+
+#个人开发原则：
+	1. 尽可能使用基础语言开发(html，js，css)，减少学习成本
+	2. 遵循规范(目录结构规范，模块规范amd)，利用共享(开源库)
+	3. 自动化构建，模块化开发，利于团队分工协作，、进度管理、单元测试
+	4. 使用es2016+语法开发(如：Module(import export)、Generator、async、await、Decorator等)，API强大，代码更简洁优雅
+
+涉及知识点：node.js fis3构建工具 模块规范(commonjs amd cmd) es2016+ ui-frame
+
+
+
+#模块化开发编程 - http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html
+	先想一想，为什么模块化很重要？
+	因为有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块。
+	但是，这样做有一个前提，那就是大家必须以同样的方式编写模块，否则你有你的写法，
+	我有我的写法，岂不是乱了套！考虑到Javascript模块现在还没有官方规范，这一点就更重要了。
+
+#目前，通行的Javascript模块规范共有两种：CommonJS和AMD
+
+
+#amd规范 - https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)
+	AMD Loader之require.js - https://github.com/amdjs/amdjs-api/wiki/require-(%E4%B8%AD%E6%96%87%E7%89%88)
+	require.js中的commonJs写法 - https://imququ.com/post/amd-simplified-commonjs-wrapping.html
+	
+#第三方库
+	目前大多数的第三方类库都会遵循amd规范
+	很多插件类在代码里没有使用define()来声明依赖关系
+
+开发目录结构：
+	/page
+	/widget
+	/static
+	/static/lib
+	/components
+
+发布目录结构：
+	/page
+	/static
+	/static/pkg  
+		js打包：第三方库js打包成base.js  
+				项目组件js和main.js打包成common.js
+		css打包：第三方库css打包成base.css
+				 项目组件css和main.css打包成common.css
+	
+
+
+
+
+
+
+#fis3-hook-components
+https://github.com/fis-components/components
+
+#fis3-hook-npm
+https://www.npmjs.com/package/fis3-hook-npm
+
+#fis3-hook-node_modules
+https://github.com/fex-team/fis3-hook-node_modules
+
+#fis3-hook-module 
+https://www.npmjs.com/package/fis3-hook-module
+
+#fis3-hook-commonjs
+https://github.com/fex-team/fis3-hook-commonjs
+使用es6 module风格开发
+import $ from 'jquery'
+import jqueryPlug from 'jquery-plug' // 会提示$未定义
+
+
+
+#fis3-hook-amd
+#fis3-hook-cmd
+#fis3-hook-system
+
+#fis-postprocessor-amd
+https://github.com/fex-team/fis-postprocessor-amd
+
+
+
+
+
+
+
+
+
+
